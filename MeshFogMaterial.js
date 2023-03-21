@@ -18,7 +18,6 @@ export class MeshFoggyMaterial extends MeshStandardMaterial {
                 else{
                     this[property] = parameters[property];
                 }
-               
             }
         }
 
