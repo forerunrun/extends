@@ -36,11 +36,5 @@ export class MeshFoggyMaterial extends THREE.MeshStandardMaterial {
             )
         }
 
-        Object.keys(this.uniforms).forEach((name) =>
-        Object.defineProperty(this, name, {
-          get: () => this.uniforms[name].value,
-          set: (v) => (this.uniforms[name].value = v)
-        })
-      )
     }
 }
