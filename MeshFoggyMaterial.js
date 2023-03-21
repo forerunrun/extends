@@ -1,13 +1,15 @@
-import * as THREE from 'three'
+import {MeshStandardMaterial, Color} from 'three'
 
-export class MeshFoggyMaterial extends THREE.MeshStandardMaterial {
+export class MeshFoggyMaterial extends MeshStandardMaterial {
     constructor( parameters ) {
         super()
+
+        console.log(parameters);
 
         this.uniforms = {
             fPlane: { value: parameters.plane },
             fDepth: { value: parameters.depth },
-            fColor: { value: parameters.color },
+            fColor: { value: parameters.color.isColor? parameters.color : new Color(parameters.color) },
         }
 
         this.onBeforeCompile = (shader) => {
@@ -35,6 +37,5 @@ export class MeshFoggyMaterial extends THREE.MeshStandardMaterial {
             `
             )
         }
-
     }
 }
