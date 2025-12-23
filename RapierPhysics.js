@@ -182,6 +182,11 @@ async function RapierPhysics() {
 
 	function createInstancedBody( mesh, mass, shape ) {
 
+		const matrixx = new Matrix4();
+		const positionn = new Vector3();
+		const quaternionn = new  Quaternion();
+		const scalee = new Vector3();
+		
 		const array = mesh.instanceMatrix.array;
 
 		const bodies = [];
@@ -189,8 +194,10 @@ async function RapierPhysics() {
 
 		for ( let i = 0; i < mesh.count; i ++ ) {
 
-			const position = _vector.fromArray( array, i * 16 + 12 );
-			const { body, collider } = createBody( position, null, mass, shape );
+			matrixx.fromArray(array, i * 16);
+			// const position = _vector.fromArray( array, i * 16 + 12 );
+			matrixx.decompose(positionn, quaternionn, scalee);
+			const { body, collider } = createBody( positionn, quaternionn, mass, shape );
 			bodies.push( body );
 			colliders.push( collider );
 
